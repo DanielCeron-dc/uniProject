@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TreeNode from "../../Components/TreeNode/TreeNode";
 
-interface Props {}
+interface Props {
+  values: string[];
+}
 
-const Tree: React.FC<Props> = (Props) => {
+const Tree: React.FC<Props> = (props) => {
   const [Data, setData] = useState<null | string[]>(null);
   const FetchData = async () => {
     let response = await axios.get(
@@ -15,15 +17,26 @@ const Tree: React.FC<Props> = (Props) => {
   };
 
   useEffect(() => {
-    FetchData();
+    //FetchData();
   }, []);
 
   return (
-    <div>
-      {Data == null
-        ? "Cargando la api de java"
-        : Data.map((node, index) => <TreeNode value={node} key={index}></TreeNode>)}
-    </div>
+    <React.Fragment>
+      <div style={{ display: "inline-flex", margin: "10px" }}>
+        {props.values.map((val, index) => (
+          <TreeNode conection={"2"} name={"1"} key={index}>
+            {val}
+          </TreeNode>
+        ))}
+      </div>
+      <div style={{ display: "inline-flex" }}>
+        {props.values.map((val, index) => (
+          <TreeNode conection={"1"} name={"2"} key={index}>
+            {val + 1}
+          </TreeNode>
+        ))}
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -6,10 +6,13 @@ var style: React.CSSProperties = {
   textAlign: "center",
   padding: "20px",
   position: "fixed",
+  display: "flex",
   left: "0",
   bottom: "0",
-  height: "60px",
+  height: "90px",
   width: "100%",
+
+  justifyContent: "center",
 };
 
 const Footer: React.FC = (Props) => {
